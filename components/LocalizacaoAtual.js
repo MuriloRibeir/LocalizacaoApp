@@ -11,12 +11,15 @@ const LocalizacaoAtual = () => {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
         );
+
+        // Verifica se a permissão foi negada
         if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
           console.warn('Permissão de localização negada');
           return;
         }
       }
 
+      // Obtém a localização atual
       Geolocation.getCurrentPosition(
         (pos) => {
           setLocalizacao(pos.coords);
